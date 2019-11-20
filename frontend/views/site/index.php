@@ -7,18 +7,19 @@ $this->title = 'CES Apartamentos';
 <div class="site-index">
 
     <div class="jumbotron">
-        <h1>Congratulations!</h1>
+        <h1>Welcome to CES apartamento</h1>
 
-        <p class="lead">You have successfully created your Yii-powered application.</p>
+        <img src="Imagens/Apartamento_pagina_inicial2.jpg" width=900/>
 
-        <p><a class="btn btn-lg btn-success" href="http://www.yiiframework.com">Get started with Yii</a></p>
     </div>
+
+    
 
     <div class="body-content">
 
         <div class="row">
             <div class="col-lg-4">
-                <h2>Heading</h2>
+                <h2>Apartamentos Recentes</h2>
 
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
                     dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
