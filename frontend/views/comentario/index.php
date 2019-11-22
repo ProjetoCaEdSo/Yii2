@@ -6,7 +6,7 @@ use yii\grid\GridView;
 /* @var $this yii\web\View */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Comentarios';
+$this->title = 'Comentario';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="comentario-index">

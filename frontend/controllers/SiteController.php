@@ -145,6 +145,11 @@ class SiteController extends Controller
         return $this->render('about');
     }
 
+    public function actionDbase()
+    {
+        return $this->render('dbase');
+    }
+
     /**
      * Signs user up.
      *

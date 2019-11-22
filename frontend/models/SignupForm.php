@@ -3,15 +3,24 @@ namespace frontend\models;
 
 use Yii;
 use yii\base\Model;
-use common\models\User;
+use frontend\models\Utilizador;
 
 /**
  * Signup form
  */
 class SignupForm extends Model
 {
-    public $username;
+    public $tipo_de_usuario;
+    public $primeiro_nome;
+    public $apelido;
     public $email;
+    public $telemovel;
+    public $distrito;
+    public $concelho;
+    public $freguesia;
+    public $n_identificacao_civil;
+    public $data_nascimento;
+    public $universidade;
     public $password;
 
 
@@ -21,19 +30,30 @@ class SignupForm extends Model
     public function rules()
     {
         return [
-            ['username', 'trim'],
-            ['username', 'required'],
-            ['username', 'unique', 'targetClass' => '\common\models\User', 'message' => 'This username has already been taken.'],
-            ['username', 'string', 'min' => 2, 'max' => 255],
+            ['primeiro_nome', 'trim'],
+            ['primeiro_nome', 'required'],
+            ['primeiro_nome', 'string', 'min' => 2, 'max' => 20],
+
+            ['apelido', 'trim'],
+            ['apelido', 'required'],
+            ['apelido', 'string', 'min' => 2, 'max' => 20],
 
             ['email', 'trim'],
             ['email', 'required'],
             ['email', 'email'],
             ['email', 'string', 'max' => 255],
-            ['email', 'unique', 'targetClass' => '\common\models\User', 'message' => 'This email address has already been taken.'],
+            ['email', 'unique', 'targetClass' => '\frontend\models\Utilizador', 'message' => 'This email address has already been taken.'],
+
+            ['telemovel', 'trim'],
+            ['telemovel', 'required'],
+            ['telemovel', 'integer'],
+            ['telemovel', 'unique', 'targetClass' => '\frontend\models\Utilizador', 'message' => 'This email address has already been taken.'],
 
             ['password', 'required'],
             ['password', 'string', 'min' => 6],
+
+            ['data_nascimento', 'required'],
+            ['data_nascimento', 'string', 'min' => 2, 'max' => 20],
         ];
     }
 
@@ -48,8 +68,8 @@ class SignupForm extends Model
             return null;
         }
         
-        $user = new User();
-        $user->username = $this->username;
+        $user = new Utilizador();
+        $user->nome = $this->nome;
         $user->email = $this->email;
         $user->setPassword($this->password);
         $user->generateAuthKey();
@@ -60,9 +80,10 @@ class SignupForm extends Model
 
     /**
      * Sends confirmation email to user
-     * @param User $user user model to with email should be send
+     * @param Utilizador $user user model to with email should be send
      * @return bool whether the email was sent
      */
+    
     protected function sendEmail($user)
     {
         return Yii::$app
