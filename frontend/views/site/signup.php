@@ -40,8 +40,8 @@ $this->params['breadcrumbs'][] = $this->title;
                     <div id="tipo_senhorio">
                         <h3>Morada</h3>
                         <?= $form->field($model, 'distrito') ?>
-                        <?= $form->field($model, 'concelho') ?>
-                        <?= $form->field($model, 'freguesia') ?>
+                        <?= $form->field($model, 'morada') ?>
+                        <?= $form->field($model, 'codigo_postal') ?>
                     </div>
 
                     <h3>Outras Informações</h3>

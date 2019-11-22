@@ -14,22 +14,23 @@ use Yii;
  * @property string $Email
  * @property int $Contacto
  * @property string $Distrito
- * @property string $Concelho
- * @property string $Freguesia
  * @property string $Morada
  * @property string $CodigoPostal
  * @property string $DataRegis
  * @property string $Tipo
- * @property int $IdUniversidade
+ * @property string $password_hash
+ * @property string $password_reset_token
+ * @property string $verification_token
+ * @property string $auth_key
+ * @property int $status
+ * @property int $created_at
+ * @property int $updated_at
  *
  * @property Apartamento[] $apartamentos
  * @property BugReport[] $bugReports
  * @property Comentario[] $comentarios
- * @property Comprovativo[] $comprovativos
  * @property Favorito[] $favoritos
- * @property Fiador[] $fiadors
  * @property Solicitacao[] $solicitacaos
- * @property Universidade $universidade
  */
 class Utilizador extends \yii\db\ActiveRecord
 {
@@ -47,14 +48,14 @@ class Utilizador extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['Nome', 'DataNasc', 'NumCarCid', 'Email', 'Contacto', 'Tipo'], 'required'],
+            [['Nome', 'DataNasc', 'NumCarCid', 'Email', 'Contacto', 'Tipo', 'password_hash', 'password_reset_token', 'auth_key', 'status', 'created_at', 'updated_at'], 'required'],
             [['DataNasc', 'DataRegis'], 'safe'],
-            [['Contacto', 'IdUniversidade'], 'integer'],
+            [['Contacto', 'status', 'created_at', 'updated_at'], 'integer'],
             [['Tipo'], 'string'],
             [['Nome', 'Email', 'Morada'], 'string', 'max' => 50],
-            [['NumCarCid', 'Distrito', 'Concelho', 'Freguesia'], 'string', 'max' => 20],
+            [['NumCarCid', 'Distrito'], 'string', 'max' => 20],
             [['CodigoPostal'], 'string', 'max' => 10],
-            [['IdUniversidade'], 'exist', 'skipOnError' => true, 'targetClass' => Universidade::className(), 'targetAttribute' => ['IdUniversidade' => 'IdUniversidade']],
+            [['password_hash', 'password_reset_token', 'verification_token', 'auth_key'], 'string', 'max' => 100],
         ];
     }
 
@@ -71,13 +72,17 @@ class Utilizador extends \yii\db\ActiveRecord
             'Email' => 'Email',
             'Contacto' => 'Contacto',
             'Distrito' => 'Distrito',
-            'Concelho' => 'Concelho',
-            'Freguesia' => 'Freguesia',
             'Morada' => 'Morada',
             'CodigoPostal' => 'Codigo Postal',
             'DataRegis' => 'Data Regis',
             'Tipo' => 'Tipo',
-            'IdUniversidade' => 'Id Universidade',
+            'password_hash' => 'Password Hash',
+            'password_reset_token' => 'Password Reset Token',
+            'verification_token' => 'Verification Token',
+            'auth_key' => 'Auth Key',
+            'status' => 'Status',
+            'created_at' => 'Created At',
+            'updated_at' => 'Updated At',
         ];
     }
 
@@ -108,14 +113,6 @@ class Utilizador extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getComprovativos()
-    {
-        return $this->hasMany(Comprovativo::className(), ['IdUtilizador' => 'IdUtilizador']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
     public function getFavoritos()
     {
         return $this->hasMany(Favorito::className(), ['IdUtilizador' => 'IdUtilizador']);
@@ -124,24 +121,8 @@ class Utilizador extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getFiadors()
-    {
-        return $this->hasMany(Fiador::className(), ['IdUtilizador' => 'IdUtilizador']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
     public function getSolicitacaos()
     {
         return $this->hasMany(Solicitacao::className(), ['IdUtilizador' => 'IdUtilizador']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getUniversidade()
-    {
-        return $this->hasOne(Universidade::className(), ['IdUniversidade' => 'IdUniversidade']);
     }
 }

@@ -9,8 +9,6 @@ use Yii;
  *
  * @property int $IdUniversidade
  * @property string $Nome
- *
- * @property Utilizador[] $utilizadors
  */
 class Universidade extends \yii\db\ActiveRecord
 {
@@ -42,13 +40,5 @@ class Universidade extends \yii\db\ActiveRecord
             'IdUniversidade' => 'Id Universidade',
             'Nome' => 'Nome',
         ];
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getUtilizadors()
-    {
-        return $this->hasMany(Utilizador::className(), ['IdUniversidade' => 'IdUniversidade']);
     }
 }

@@ -16,8 +16,8 @@ class SignupForm extends Model
     public $email;
     public $telemovel;
     public $distrito;
-    public $concelho;
-    public $freguesia;
+    public $morada;
+    public $codigo_postal;
     public $n_identificacao_civil;
     public $data_nascimento;
     public $universidade;
@@ -48,12 +48,28 @@ class SignupForm extends Model
             ['telemovel', 'required'],
             ['telemovel', 'integer'],
             ['telemovel', 'unique', 'targetClass' => '\frontend\models\Utilizador', 'message' => 'This email address has already been taken.'],
+            /*
+            ['distrito', 'required'],
+            ['distrito', 'string', 'min' => 2, 'max' => 20],
+            
+            ['morada', 'required'],
+            ['morada', 'string', 'min' => 2, 'max' => 50],
+            
+            ['codigo_postal', 'required'],
+            ['codigo_postal', 'string', 'min' => 7, 'max' => 9],*/
+            
+            ['n_identificacao_civil', 'required'],
+            ['n_identificacao_civil', 'string', 'min' => 2, 'max' => 20],
+            ['email', 'unique', 'targetClass' => '\frontend\models\Utilizador', 'message' => 'This email address has already been taken.'],
+
+            ['data_nascimento', 'required'],
+            ['data_nascimento', 'string', 'min' => 2, 'max' => 20],
+            
+            ['universidade', 'required'],
 
             ['password', 'required'],
             ['password', 'string', 'min' => 6],
 
-            ['data_nascimento', 'required'],
-            ['data_nascimento', 'string', 'min' => 2, 'max' => 20],
         ];
     }
 

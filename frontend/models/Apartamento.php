@@ -34,6 +34,7 @@ use Yii;
  * @property Utilizador $utilizador
  * @property Comentario[] $comentarios
  * @property Favorito[] $favoritos
+ * @property Imagem[] $imagems
  * @property Solicitacao[] $solicitacaos
  */
 class Apartamento extends \yii\db\ActiveRecord
@@ -119,6 +120,14 @@ class Apartamento extends \yii\db\ActiveRecord
     public function getFavoritos()
     {
         return $this->hasMany(Favorito::className(), ['IdApartamento' => 'IdApartamento']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getImagems()
+    {
+        return $this->hasMany(Imagem::className(), ['IdApartamento' => 'IdApartamento']);
     }
 
     /**

@@ -147,7 +147,9 @@ class SiteController extends Controller
 
     public function actionDbase()
     {
-        return $this->render('dbase');
+        return $this->render('dbase'/*, [
+            'model' => $model,
+        ]*/);
     }
 
     /**

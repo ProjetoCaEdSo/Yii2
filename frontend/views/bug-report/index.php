@@ -6,7 +6,7 @@ use yii\grid\GridView;
 /* @var $this yii\web\View */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Bug Report';
+$this->title = 'Bug Reports';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="bug-report-index">

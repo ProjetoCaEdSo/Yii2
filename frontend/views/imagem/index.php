@@ -6,15 +6,15 @@ use yii\grid\GridView;
 /* @var $this yii\web\View */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Solicitacaos';
+$this->title = 'Imagems';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="solicitacao-index">
+<div class="imagem-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Create Solicitacao', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Create Imagem', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
 
@@ -23,9 +23,8 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'IdSolicitacao',
-            'DataSolic',
-            'IdUtilizador',
+            'IdImagem',
+            'Imagem',
             'IdApartamento',
 
             ['class' => 'yii\grid\ActionColumn'],
