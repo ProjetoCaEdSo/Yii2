@@ -55,4 +55,5 @@ class Imagem extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Apartamento::className(), ['IdApartamento' => 'IdApartamento']);
     }
+
 }

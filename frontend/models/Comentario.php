@@ -40,7 +40,7 @@ class Comentario extends \yii\db\ActiveRecord
             [['IdUtilizador', 'IdApartamento', 'IdComentarioPai'], 'integer'],
             [['Mensagem'], 'string', 'max' => 2000],
             [['IdUtilizador'], 'exist', 'skipOnError' => true, 'targetClass' => Utilizador::className(), 'targetAttribute' => ['IdUtilizador' => 'IdUtilizador']],
-            [['IdApartamento'], 'exist', 'skipOnError' => true, 'targetClass' => Apartamento::className(), 'targetAttribute' => ['IdApartamento' => 'IdApartamento']],
+        [['IdApartamento'], 'exist', 'skipOnError' => true, 'targetClass' => Apartamento::className(), 'targetAttribute' => ['IdApartamento' => 'IdApartamento']],
             [['IdComentarioPai'], 'exist', 'skipOnError' => true, 'targetClass' => Comentario::className(), 'targetAttribute' => ['IdComentarioPai' => 'IdComentario']],
         ];
     }
@@ -91,4 +91,5 @@ class Comentario extends \yii\db\ActiveRecord
     {
         return $this->hasMany(Comentario::className(), ['IdComentarioPai' => 'IdComentario']);
     }
+
 }

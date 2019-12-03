@@ -21,43 +21,47 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="col-lg-5">
             <?php $form = ActiveForm::begin(['id' => 'form-signup']); ?>
             
-                <?= $form->field($model, 'tipo_de_usuario')->dropDownList(['a' => '', 'b' => 'Estudante', 'c' => 'Estudante e Senhorio', 'd' => 'Senhorio'], ['onchange'=> "trocar_visibilidade(this)"], ['id'=>'drop_tipo']); ?>
+                <?= $form->field($model, 'Tipo')->dropDownList(
+                    ['' => '', 'a' => 'Estudante', 'b' => 'Estudante e Senhorio', 'c' => 'Senhorio'],
+                    ['onchange'=> "trocar_visibilidade(this)"], ['id'=>'drop_tipo'])->label('Tipo de Usuário'); ?>
                     
                 <div id="both">
 
                     <h3>Nome</h3>
 
-                    <?= $form->field($model, 'primeiro_nome')//->textInput(['autofocus' => true]) ?>
+                    <?= $form->field($model, 'Nome')->label('Primeiro Nome') ?>
 
-                    <?= $form->field($model, 'apelido') ?>
+                    <?= $form->field($model, 'Apelido')->label('Apelido') ?>
 
                     <h3>Contactos</h3>
 
-                    <?= $form->field($model, 'email') ?>
+                    <?= $form->field($model, 'Email')->label('Email') ?>
 
-                    <?= $form->field($model, 'telemovel') ?>
+                    <?= $form->field($model, 'Telemovel')->label('Télemovel') ?>
 
                     <div id="tipo_senhorio">
                         <h3>Morada</h3>
-                        <?= $form->field($model, 'distrito') ?>
-                        <?= $form->field($model, 'morada') ?>
-                        <?= $form->field($model, 'codigo_postal') ?>
+                        <?= $form->field($model, 'Distrito')->label('Distrito') ?>
+                        <?= $form->field($model, 'Morada')->label('Morada') ?>
+                        <?= $form->field($model, 'CodigoPostal')->label('Código Postal') ?>
                     </div>
 
                     <h3>Outras Informações</h3>
 
-                    <?= $form->field($model, 'n_identificacao_civil') ?>
+                    <?= $form->field($model, 'NumCarCid')->label('Nº Identificacao Civil') ?>
                     
-                    <p><b>Data Nascimento</b></p>
-
-                    <?= DatePicker::widget([
-                        'model' => $model,
-                        'attribute' => "data_nascimento",
-                        'dateFormat' => 'dd-MM-yyyy'
-                    ]) ?>
-                    
+                    <?= $form->field($model, 'DataNasc')->widget(DatePicker::classname(), [
+                        'options' => [
+                            'class' => 'form-control',
+                            'autocomplete' => 'off'],
+                        'clientOptions' => [
+                            'language' => 'en',
+                            'yearRange' => '1950:2050',
+                            'changeMonth' => true,
+                            'changeYear' => true
+                        ]])->label('Data Nascimento') ?>
                     <div id="tipo_estudante">
-                        <?= $form->field($model, 'universidade') ?>
+                        <?= $form->field($model, 'Universidade')->label('Universidade') ?>
                     </div>
                     
                     <?= $form->field($model, 'password')->passwordInput() ?>
@@ -78,20 +82,20 @@ $this->params['breadcrumbs'][] = $this->title;
     function trocar_visibilidade(dropdowntipo) {
         //var value = document.getElementById('drop_tipo').options[document.getElementById('drop_tipo').selectedIndex].text;
         var value = dropdowntipo.options[dropdowntipo.selectedIndex].value;
-        if(value.localeCompare("a")==0){
-            document.getElementById("both").style.display = "none";
-        }else{
+        if(value.localeCompare("a")==0||value.localeCompare("b")==0||value.localeCompare("c")==0){
             document.getElementById("both").style.display = "block";
-            if(value.localeCompare("b")==0||value.localeCompare("c")==0){
-                document.getElementById("tipo_estudante").style.display = "block";
-            }else{
-                document.getElementById("tipo_estudante").style.display = "none";
-            }
-            if(value.localeCompare("c")==0||value.localeCompare("d")==0){
-                document.getElementById("tipo_senhorio").style.display = "block";
-            }else{
-                document.getElementById("tipo_senhorio").style.display = "none";
-            }
+        }else{
+            document.getElementById("both").style.display = "none";
+        }
+        if(value.localeCompare("a")==0||value.localeCompare("b")==0){
+            document.getElementById("tipo_estudante").style.display = "block";
+        }else{
+            document.getElementById("tipo_estudante").style.display = "none";
+        }
+        if(value.localeCompare("b")==0||value.localeCompare("c")==0){
+            document.getElementById("tipo_senhorio").style.display = "block";
+        }else{
+            document.getElementById("tipo_senhorio").style.display = "none";
         }
     }
 </script>

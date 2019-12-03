@@ -3,17 +3,16 @@
 namespace frontend\controllers;
 
 use Yii;
-use frontend\models\Apartamento;
-use frontend\models\Imagem;
+use frontend\models\User;
 use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * ApartamentoController implements the CRUD actions for Apartamento model.
+ * UserController implements the CRUD actions for User model.
  */
-class ApartamentoController extends Controller
+class UserController extends Controller
 {
     /**
      * {@inheritdoc}
@@ -31,13 +30,13 @@ class ApartamentoController extends Controller
     }
 
     /**
-     * Lists all Apartamento models.
+     * Lists all User models.
      * @return mixed
      */
     public function actionIndex()
     {
         $dataProvider = new ActiveDataProvider([
-            'query' => Apartamento::find(),
+            'query' => User::find(),
         ]);
 
         return $this->render('index', [
@@ -46,7 +45,7 @@ class ApartamentoController extends Controller
     }
 
     /**
-     * Displays a single Apartamento model.
+     * Displays a single User model.
      * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
@@ -59,27 +58,25 @@ class ApartamentoController extends Controller
     }
 
     /**
-     * Creates a new Apartamento model.
+     * Creates a new User model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Apartamento();
-        $modelImg = new Imagem();
+        $model = new User();
 
-        if ($model->load(Yii::$app->request->post()) && $model->createApart()) {
-            return $this->redirect(['view', 'id' => $model->IdApartamento]);
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['view', 'id' => $model->IdUtilizador]);
         }
 
         return $this->render('create', [
             'model' => $model,
-            'modelImg' => $modelImg,
         ]);
     }
 
     /**
-     * Updates an existing Apartamento model.
+     * Updates an existing User model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -89,8 +86,8 @@ class ApartamentoController extends Controller
     {
         $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->updateApart()) {
-            return $this->redirect(['view', 'id' => $model->IdApartamento]);
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['view', 'id' => $model->IdUtilizador]);
         }
 
         return $this->render('update', [
@@ -99,7 +96,7 @@ class ApartamentoController extends Controller
     }
 
     /**
-     * Deletes an existing Apartamento model.
+     * Deletes an existing User model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -113,15 +110,15 @@ class ApartamentoController extends Controller
     }
 
     /**
-     * Finds the Apartamento model based on its primary key value.
+     * Finds the User model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Apartamento the loaded model
+     * @return User the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Apartamento::findOne($id)) !== null) {
+        if (($model = User::findOne($id)) !== null) {
             return $model;
         }
 

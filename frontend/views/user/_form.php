@@ -4,11 +4,11 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\Utilizador */
+/* @var $model app\models\User */
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
-<div class="utilizador-form">
+<div class="user-form">
 
     <?php $form = ActiveForm::begin(); ?>
 
@@ -34,7 +34,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'DataRegis')->textInput() ?>
 
-    <?= $form->field($model, 'Tipo')->dropDownList([ 'Estudante' => 'Estudante', 'Senhorio' => 'Senhorio', 'Ambos' => 'Ambos', 'Admin' => 'Admin', ], ['prompt' => '']) ?>
+    <?= $form->field($model, 'Tipo')->dropDownList([ 'Estudante' => 'Estudante', 'Senhorio' => 'Senhorio', 'Ambos' => 'Ambos', ], ['prompt' => '']) ?>
 
     <?= $form->field($model, 'password_hash')->textInput(['maxlength' => true]) ?>
 

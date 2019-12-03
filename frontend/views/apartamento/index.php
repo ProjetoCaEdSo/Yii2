@@ -24,10 +24,11 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\SerialColumn'],
 
             'IdApartamento',
+            'Titulo',
             'Preco',
             'Aprovado',
             'Distrito',
-            'Concelho',
+            //'Concelho',
             //'Freguesia',
             //'Morada',
             //'CodPostal',

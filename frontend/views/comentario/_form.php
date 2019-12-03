@@ -18,7 +18,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'IdUtilizador')->textInput() ?>
 
-    <?= $form->field($model, 'IdApartamento')->textInput() ?>
+    <?= $form->field($model, 'IdApartamento')->dropDownList($listApart, ['prompt'=>'']) ?>
 
     <?= $form->field($model, 'IdComentarioPai')->textInput() ?>
 

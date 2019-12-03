@@ -8,14 +8,15 @@ use Yii;
  * This is the model class for table "apartamento".
  *
  * @property int $IdApartamento
- * @property string $Preco
+ * @property string $Titulo
+ * @property float $Preco
  * @property string $Aprovado
  * @property string $Distrito
  * @property string $Concelho
  * @property string $Freguesia
  * @property string $Morada
  * @property string $CodPostal
- * @property string $Descricao
+ * @property string|null $Descricao
  * @property int $Fianca
  * @property string $DataAnuncio
  * @property string $Fumador
@@ -31,7 +32,7 @@ use Yii;
  * @property int $NumWC
  * @property int $IdUtilizador
  *
- * @property Utilizador $utilizador
+ * @property Utilizador $idUtilizador
  * @property Comentario[] $comentarios
  * @property Favorito[] $favoritos
  * @property Imagem[] $imagems
@@ -53,13 +54,13 @@ class Apartamento extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['Preco', 'Aprovado', 'Distrito', 'Concelho', 'Freguesia', 'Morada', 'CodPostal', 'Descricao', 'Fianca', 'Fumador', 'Mobilado', 'Internet', 'NumQuartos', 'TipoApart', 'Cozinha', 'Parking', 'Animais', 'Casais', 'Genero', 'NumWC', 'IdUtilizador'], 'required'],
+            [['Titulo', 'Preco', 'Aprovado', 'Distrito', 'Concelho', 'Freguesia', 'Morada', 'CodPostal', 'Fianca', 'Fumador', 'Mobilado', 'Internet', 'NumQuartos', 'TipoApart', 'Cozinha', 'Parking', 'Animais', 'Casais', 'Genero', 'NumWC', 'IdUtilizador'], 'required'],
             [['Preco'], 'number'],
             [['Aprovado', 'Fumador', 'Mobilado', 'Internet', 'TipoApart', 'Cozinha', 'Parking', 'Animais', 'Casais', 'Genero'], 'string'],
             [['Fianca', 'NumQuartos', 'NumWC', 'IdUtilizador'], 'integer'],
             [['DataAnuncio'], 'safe'],
+            [['Titulo', 'Morada'], 'string', 'max' => 50],
             [['Distrito', 'Concelho', 'Freguesia'], 'string', 'max' => 20],
-            [['Morada'], 'string', 'max' => 50],
             [['CodPostal'], 'string', 'max' => 10],
             [['Descricao'], 'string', 'max' => 5000],
             [['IdUtilizador'], 'exist', 'skipOnError' => true, 'targetClass' => Utilizador::className(), 'targetAttribute' => ['IdUtilizador' => 'IdUtilizador']],
@@ -73,6 +74,7 @@ class Apartamento extends \yii\db\ActiveRecord
     {
         return [
             'IdApartamento' => 'Id Apartamento',
+            'Titulo' => 'Titulo',
             'Preco' => 'Preco',
             'Aprovado' => 'Aprovado',
             'Distrito' => 'Distrito',
@@ -101,7 +103,7 @@ class Apartamento extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getUtilizador()
+    public function getIdUtilizador()
     {
         return $this->hasOne(Utilizador::className(), ['IdUtilizador' => 'IdUtilizador']);
     }
@@ -136,5 +138,25 @@ class Apartamento extends \yii\db\ActiveRecord
     public function getSolicitacaos()
     {
         return $this->hasMany(Solicitacao::className(), ['IdApartamento' => 'IdApartamento']);
+    }
+
+    public function createApart()
+    {
+        $data = date('d/m/Y H:i:s');
+        //$this->DataAnuncio = date('d/m/Y H:i:s'); 
+        if (!$this->validate()) {
+            return null;
+        }
+
+        return $this->save();;
+    }
+
+    public function updateApart()
+    {
+        if (!$this->validate()) {
+            return null;
+        }
+
+        return $this->save();
     }
 }

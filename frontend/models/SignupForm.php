@@ -10,17 +10,17 @@ use frontend\models\Utilizador;
  */
 class SignupForm extends Model
 {
-    public $tipo_de_usuario;
-    public $primeiro_nome;
-    public $apelido;
-    public $email;
-    public $telemovel;
-    public $distrito;
-    public $morada;
-    public $codigo_postal;
-    public $n_identificacao_civil;
-    public $data_nascimento;
-    public $universidade;
+    public $Tipo;
+    public $Nome;
+    public $Apelido;
+    public $Email;
+    public $Telemovel;
+    public $Distrito;
+    public $Morada;
+    public $CodigoPostal;
+    public $NumCarCid;
+    public $DataNasc;
+    public $Universidade;
     public $password;
 
 
@@ -30,43 +30,44 @@ class SignupForm extends Model
     public function rules()
     {
         return [
-            ['primeiro_nome', 'trim'],
-            ['primeiro_nome', 'required'],
-            ['primeiro_nome', 'string', 'min' => 2, 'max' => 20],
+            ['Nome', 'trim'],
+            ['Nome', 'required'],
+            ['Nome', 'string', 'min' => 2, 'max' => 20],
 
-            ['apelido', 'trim'],
-            ['apelido', 'required'],
-            ['apelido', 'string', 'min' => 2, 'max' => 20],
+            ['Apelido', 'trim'],
+            ['Apelido', 'required'],
+            ['Apelido', 'string', 'min' => 2, 'max' => 20],
 
-            ['email', 'trim'],
-            ['email', 'required'],
-            ['email', 'email'],
-            ['email', 'string', 'max' => 255],
-            ['email', 'unique', 'targetClass' => '\frontend\models\Utilizador', 'message' => 'This email address has already been taken.'],
+            ['Email', 'trim'],
+            ['Email', 'required'],
+            ['Email', 'email'],
+            ['Email', 'string', 'max' => 255],
+            ['Email', 'unique', 'targetClass' => '\frontend\models\Utilizador', 'message' => 'This email address has already been taken.'],
 
-            ['telemovel', 'trim'],
-            ['telemovel', 'required'],
-            ['telemovel', 'integer'],
-            ['telemovel', 'unique', 'targetClass' => '\frontend\models\Utilizador', 'message' => 'This email address has already been taken.'],
-            /*
-            ['distrito', 'required'],
-            ['distrito', 'string', 'min' => 2, 'max' => 20],
+            ['Telemovel', 'trim'],
+            ['Telemovel', 'required'],
+            ['Telemovel', 'integer'],
+            ['Telemovel', 'unique', 'targetClass' => '\frontend\models\Utilizador', 'message' => 'This phone contact has already been taken.'],
             
-            ['morada', 'required'],
-            ['morada', 'string', 'min' => 2, 'max' => 50],
-            
-            ['codigo_postal', 'required'],
-            ['codigo_postal', 'string', 'min' => 7, 'max' => 9],*/
-            
-            ['n_identificacao_civil', 'required'],
-            ['n_identificacao_civil', 'string', 'min' => 2, 'max' => 20],
-            ['email', 'unique', 'targetClass' => '\frontend\models\Utilizador', 'message' => 'This email address has already been taken.'],
+            /*['Distrito', 'required'],*/
+            ['Distrito', 'string', /*'min' => 2,*/ 'max' => 20],
 
-            ['data_nascimento', 'required'],
-            ['data_nascimento', 'string', 'min' => 2, 'max' => 20],
+            /*['Morada', 'required'],*/
+            ['Morada', 'string', /*'min' => 2,*/ 'max' => 50],
             
-            ['universidade', 'required'],
+            /*['CodigoPostal', 'required'],*/
+            ['CodigoPostal', 'string', /*'min' => 7,*/ 'max' => 9],
+            
+            ['NumCarCid', 'required'],
+            ['NumCarCid', 'string', 'min' => 2, 'max' => 20],
+            ['NumCarCid', 'unique', 'targetClass' => '\frontend\models\Utilizador', 'message' => 'This identification has already been taken.'],
 
+            ['DataNasc', 'required'],
+            ['DataNasc', 'string', 'min' => 2, 'max' => 20],
+
+            /*['Distrito', 'required'],*/
+            ['Universidade', 'string', /*'min' => 2,*/ 'max' => 20],
+            
             ['password', 'required'],
             ['password', 'string', 'min' => 6],
 
@@ -83,33 +84,52 @@ class SignupForm extends Model
         if (!$this->validate()) {
             return null;
         }
-        
-        $user = new Utilizador();
-        $user->nome = $this->nome;
-        $user->email = $this->email;
-        $user->setPassword($this->password);
-        $user->generateAuthKey();
-        $user->generateEmailVerificationToken();
-        return $user->save() && $this->sendEmail($user);
-
+        $utilizador = new Utilizador();
+        /*if($this->Tipo == "b"){*/
+            $utilizador->Tipo = "Estudante";
+        /*}else{
+            if($this->Tipo == "c"){
+                $utilizador->Tipo = "Ambos";
+            }else{
+                if($this->Tipo == "d"){
+                    $utilizador->Tipo = "Senhorio";
+                }else{
+                    return null;
+                }
+            }
+        }*/
+        $utilizador->Nome = $this->Nome;
+        $utilizador->Apelido = $this->Apelido;
+        $utilizador->Email = $this->Email;
+        $utilizador->Telemovel = $this->Telemovel;
+        $utilizador->Distrito = $this->Distrito;
+        $utilizador->Morada = $this->Morada;
+        $utilizador->CodigoPostal = $this->CodigoPostal;
+        $utilizador->NumCarCid = $this->NumCarCid;
+        $utilizador->DataNasc = date("y-m-d", strtotime($this->DataNasc));;
+        $utilizador->Universidade = $this->Universidade;
+        $utilizador->setPassword($this->password);
+        $utilizador->generateAuthKey();
+        $utilizador->generateEmailVerificationToken();
+        return $utilizador->save();// && $this->sendEmail($utilizador);
     }
 
     /**
      * Sends confirmation email to user
-     * @param Utilizador $user user model to with email should be send
+     * @param Utilizador $utilizador user model to with email should be send
      * @return bool whether the email was sent
      */
     
-    protected function sendEmail($user)
+    protected function sendEmail($utilizador)
     {
         return Yii::$app
             ->mailer
             ->compose(
                 ['html' => 'emailVerify-html', 'text' => 'emailVerify-text'],
-                ['user' => $user]
+                ['utilizador' => $utilizador]
             )
             ->setFrom([Yii::$app->params['supportEmail'] => Yii::$app->name . ' robot'])
-            ->setTo($this->email)
+            ->setTo($this->Email)
             ->setSubject('Account registration at ' . Yii::$app->name)
             ->send();
     }

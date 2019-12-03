@@ -9,6 +9,7 @@ use Yii;
  *
  * @property int $IdUniversidade
  * @property string $Nome
+ * @property string $Distrito
  */
 class Universidade extends \yii\db\ActiveRecord
 {
@@ -26,8 +27,9 @@ class Universidade extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['Nome'], 'required'],
+            [['Nome', 'Distrito'], 'required'],
             [['Nome'], 'string', 'max' => 50],
+            [['Distrito'], 'string', 'max' => 20],
         ];
     }
 
@@ -39,6 +41,7 @@ class Universidade extends \yii\db\ActiveRecord
         return [
             'IdUniversidade' => 'Id Universidade',
             'Nome' => 'Nome',
+            'Distrito' => 'Distrito',
         ];
     }
 }
