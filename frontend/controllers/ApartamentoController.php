@@ -66,15 +66,13 @@ class ApartamentoController extends Controller
     public function actionCreate()
     {
         $model = new Apartamento();
-        $modelImg = new Imagem();
 
-        if ($model->load(Yii::$app->request->post()) && $model->createApart()) {
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->IdApartamento]);
         }
 
         return $this->render('create', [
             'model' => $model,
-            'modelImg' => $modelImg,
         ]);
     }
 
@@ -89,7 +87,7 @@ class ApartamentoController extends Controller
     {
         $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->updateApart()) {
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->IdApartamento]);
         }
 

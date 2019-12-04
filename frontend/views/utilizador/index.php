@@ -6,7 +6,8 @@ use yii\grid\GridView;
 /* @var $this yii\web\View */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Utilizadors';
+$this->title = 'Utilizador';
+$this->params['breadcrumbs'][] = ['label' => 'Base Dados', 'url' => ['/site/dbase']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="utilizador-index">

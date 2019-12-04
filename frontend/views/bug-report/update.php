@@ -6,6 +6,7 @@ use yii\helpers\Html;
 /* @var $model app\models\BugReport */
 
 $this->title = 'Update Bug Report: ' . $model->IdBug;
+$this->params['breadcrumbs'][] = ['label' => 'Base Dados', 'url' => ['/site/dbase']];
 $this->params['breadcrumbs'][] = ['label' => 'Bug Reports', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->IdBug, 'url' => ['view', 'id' => $model->IdBug]];
 $this->params['breadcrumbs'][] = 'Update';

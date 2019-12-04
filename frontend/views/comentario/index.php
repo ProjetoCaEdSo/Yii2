@@ -6,7 +6,8 @@ use yii\grid\GridView;
 /* @var $this yii\web\View */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Comentarios';
+$this->title = 'Comentário';
+$this->params['breadcrumbs'][] = ['label' => 'Base Dados', 'url' => ['/site/dbase']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="comentario-index">
@@ -14,7 +15,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Create Comentario', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Create Comentário', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
 
@@ -23,7 +24,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'IdComentario',
+            //'IdComentario',
             'Mensagem',
             'DataComent',
             'IdUtilizador',

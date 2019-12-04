@@ -1,7 +1,11 @@
 <?php
 
 use yii\helpers\Html;
+use yii\helpers\ArrayHelper;
 use yii\widgets\ActiveForm;
+use frontend\models\Comentario;
+use frontend\models\Apartamento;
+use frontend\models\Utilizador;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Comentario */
@@ -10,22 +14,45 @@ use yii\widgets\ActiveForm;
 
 <div class="comentario-form">
 
-    <?php $form = ActiveForm::begin(); ?>
+    <div class="container-fluid">
+        <?php $form = ActiveForm::begin(); ?>
+        <div class="row">
 
-    <?= $form->field($model, 'Mensagem')->textInput(['maxlength' => true]) ?>
+            <div class="col-sm-12">
+                <?= $form->field($model, 'Mensagem')->textArea(['maxlength' => true]) ?>
+            </div>
+            
+        </div>
+        <div class="row">
 
-    <?= $form->field($model, 'DataComent')->textInput() ?>
+            <div class="col-sm-6">
+                <?= $form->field($model, 'IdUtilizador')->dropDownList(ArrayHelper::map(Utilizador::find()->all(),'IdUtilizador', 'Email'), ['prompt'=>''])->label('Email do Utilizador') ?>
+            </div>
 
-    <?= $form->field($model, 'IdUtilizador')->textInput() ?>
+            <div class="col-sm-6">
+                <?= $form->field($model, 'IdApartamento')->dropDownList(ArrayHelper::map(Apartamento::find()->all(),'IdApartamento', 'Titulo'), ['prompt'=>''])->label('Titulo do Apartamento') ?>
+            </div>
+        </div>
 
-    <?= $form->field($model, 'IdApartamento')->dropDownList($listApart, ['prompt'=>'']) ?>
+        <div class="row">
+            
+            <div class="col-sm-6">
+                <?= $form->field($model, 'IdComentarioPai')->dropDownList(ArrayHelper::map(Comentario::find()->all(),'IdComentarioPai', 'Mensagem'), ['prompt'=>''])->label('Mensagem Principal') ?>
+            </div>
+            
+            <div class="col-sm-6">
+                <label class="control-label">Data Comentario</label>
+                <?php if($model->DataComent!=null){ echo Html::tag('p', Html::encode($model->DataComent), ['class' => 'form-control']);
+                    }
+                    else{ echo Html::tag('p', Html::encode(date('d/m/y', time())), ['class' => 'form-control']);
+                    } ?>
+            </div>
 
-    <?= $form->field($model, 'IdComentarioPai')->textInput() ?>
+        </div>
+        <div class="form-group">
+            <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
+        </div>
 
-    <div class="form-group">
-        <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
+        <?php ActiveForm::end(); ?>
     </div>
-
-    <?php ActiveForm::end(); ?>
-
 </div>

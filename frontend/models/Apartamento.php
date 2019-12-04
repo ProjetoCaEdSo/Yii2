@@ -140,23 +140,4 @@ class Apartamento extends \yii\db\ActiveRecord
         return $this->hasMany(Solicitacao::className(), ['IdApartamento' => 'IdApartamento']);
     }
 
-    public function createApart()
-    {
-        $data = date('d/m/Y H:i:s');
-        //$this->DataAnuncio = date('d/m/Y H:i:s'); 
-        if (!$this->validate()) {
-            return null;
-        }
-
-        return $this->save();;
-    }
-
-    public function updateApart()
-    {
-        if (!$this->validate()) {
-            return null;
-        }
-
-        return $this->save();
-    }
 }

@@ -3,13 +3,14 @@ namespace common\models;
 
 use Yii;
 use yii\base\Model;
+use frontend\models\Utilizador;
 
 /**
  * Login form
  */
 class LoginForm extends Model
 {
-    public $username;
+    public $Email;
     public $password;
     public $rememberMe = true;
 
@@ -23,7 +24,7 @@ class LoginForm extends Model
     {
         return [
             // username and password are both required
-            [['username', 'password'], 'required'],
+            [['Email', 'password'], 'required'],
             // rememberMe must be a boolean value
             ['rememberMe', 'boolean'],
             // password is validated by validatePassword()
@@ -65,12 +66,12 @@ class LoginForm extends Model
     /**
      * Finds user by [[username]]
      *
-     * @return User|null
+     * @return Utilizador|null
      */
     protected function getUser()
     {
         if ($this->_user === null) {
-            $this->_user = User::findByUsername($this->username);
+            $this->_user = Utilizador::find()->where(['Email' => $this->Email])->one();
         }
 
         return $this->_user;

@@ -7,6 +7,7 @@ use yii\widgets\DetailView;
 /* @var $model app\models\BugReport */
 
 $this->title = $model->IdBug;
+$this->params['breadcrumbs'][] = ['label' => 'Base Dados', 'url' => ['/site/dbase']];
 $this->params['breadcrumbs'][] = ['label' => 'Bug Reports', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);

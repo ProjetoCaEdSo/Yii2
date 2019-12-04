@@ -6,6 +6,7 @@ use yii\helpers\Html;
 /* @var $model app\models\Apartamento */
 
 $this->title = 'Update Apartamento: ' . $model->IdApartamento;
+$this->params['breadcrumbs'][] = ['label' => 'Base Dados', 'url' => ['/site/dbase']];
 $this->params['breadcrumbs'][] = ['label' => 'Apartamentos', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->IdApartamento, 'url' => ['view', 'id' => $model->IdApartamento]];
 $this->params['breadcrumbs'][] = 'Update';

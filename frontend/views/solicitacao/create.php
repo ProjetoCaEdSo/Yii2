@@ -6,6 +6,7 @@ use yii\helpers\Html;
 /* @var $model app\models\Solicitacao */
 
 $this->title = 'Create Solicitacao';
+$this->params['breadcrumbs'][] = ['label' => 'Base Dados', 'url' => ['/site/dbase']];
 $this->params['breadcrumbs'][] = ['label' => 'Solicitacaos', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>

@@ -6,6 +6,7 @@ use yii\helpers\Html;
 /* @var $model app\models\BugReport */
 
 $this->title = 'Create Bug Report';
+$this->params['breadcrumbs'][] = ['label' => 'Base Dados', 'url' => ['/site/dbase']];
 $this->params['breadcrumbs'][] = ['label' => 'Bug Reports', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>

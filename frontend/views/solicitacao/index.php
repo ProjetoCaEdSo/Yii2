@@ -6,7 +6,8 @@ use yii\grid\GridView;
 /* @var $this yii\web\View */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Solicitacaos';
+$this->title = 'Solicitação';
+$this->params['breadcrumbs'][] = ['label' => 'Base Dados', 'url' => ['/site/dbase']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="solicitacao-index">
@@ -14,7 +15,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Create Solicitacao', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Create Solicitação', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
 

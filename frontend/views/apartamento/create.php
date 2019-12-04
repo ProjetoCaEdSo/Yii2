@@ -6,6 +6,7 @@ use yii\helpers\Html;
 /* @var $model app\models\Apartamento */
 
 $this->title = 'Create Apartamento';
+$this->params['breadcrumbs'][] = ['label' => 'Base Dados', 'url' => ['/site/dbase']];
 $this->params['breadcrumbs'][] = ['label' => 'Apartamentos', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
@@ -15,7 +16,6 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <?= $this->render('_form', [
         'model' => $model,
-        'modelImg' => $modelImg,
     ]) ?>
 
 </div>

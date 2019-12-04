@@ -10,14 +10,22 @@ use yii\widgets\ActiveForm;
 
 <div class="universidade-form">
 
+    <div class="container-fluid">
     <?php $form = ActiveForm::begin(); ?>
+        <div class="row">
 
-    <?= $form->field($model, 'Nome')->textInput(['maxlength' => true]) ?>
+            <div class="col-sm-8">
+            <?= $form->field($model, 'Nome')->textInput(['maxlength' => true]) ?>
+            </div>
 
-    <?= $form->field($model, 'Distrito')->textInput(['maxlength' => true]) ?>
+            <div class="col-sm-4">
+            <?= $form->field($model, 'Distrito')->textInput(['maxlength' => true]) ?>
+            </div>
 
-    <div class="form-group">
-        <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
+        </div>
+        <div class="form-group">
+            <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
+        </div>
     </div>
 
     <?php ActiveForm::end(); ?>

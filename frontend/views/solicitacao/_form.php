@@ -2,6 +2,9 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use frontend\models\Utilizador;
+use frontend\models\Apartamento;
+use yii\helpers\ArrayHelper;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Solicitacao */
@@ -10,18 +13,31 @@ use yii\widgets\ActiveForm;
 
 <div class="solicitacao-form">
 
+    <div class="container-fluid">
     <?php $form = ActiveForm::begin(); ?>
+        <div class="row">
 
-    <?= $form->field($model, 'DataSolic')->textInput() ?>
+            <div class="col-sm-5">
+                <?= $form->field($model, 'IdUtilizador')->dropDownList(ArrayHelper::map(Utilizador::find()->all(),'IdUtilizador', 'Email'), ['prompt'=>''])->label('Email do Utilizador') ?>
+            </div>
 
-    <?= $form->field($model, 'IdUtilizador')->textInput() ?>
+            <div class="col-sm-5">
+                <?= $form->field($model, 'IdApartamento')->dropDownList(ArrayHelper::map(Apartamento::find()->all(),'IdApartamento', 'Titulo'), ['prompt'=>''])->label('Titulo do Apartamento') ?>
+            </div>
 
-    <?= $form->field($model, 'IdApartamento')->textInput() ?>
+            <div class="col-sm-2">
+                <label class="control-label">Data Solicitação</label>
+                <?php if($model->DataSolic!=null){ echo Html::tag('p', Html::encode($model->DataSolic), ['class' => 'form-control']);
+                    }
+                    else{ echo Html::tag('p', Html::encode(date('d/m/y', time())), ['class' => 'form-control']);
+                    } ?>
+            </div>
 
-    <div class="form-group">
-        <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
+        </div>
+        <div class="form-group">
+            <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
+        </div>
     </div>
-
     <?php ActiveForm::end(); ?>
 
 </div>

@@ -6,6 +6,7 @@ use yii\helpers\Html;
 /* @var $model app\models\Favorito */
 
 $this->title = 'Create Favorito';
+$this->params['breadcrumbs'][] = ['label' => 'Base Dados', 'url' => ['/site/dbase']];
 $this->params['breadcrumbs'][] = ['label' => 'Favoritos', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>

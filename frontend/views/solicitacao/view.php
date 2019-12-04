@@ -7,6 +7,7 @@ use yii\widgets\DetailView;
 /* @var $model app\models\Solicitacao */
 
 $this->title = $model->IdSolicitacao;
+$this->params['breadcrumbs'][] = ['label' => 'Base Dados', 'url' => ['/site/dbase']];
 $this->params['breadcrumbs'][] = ['label' => 'Solicitacaos', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);

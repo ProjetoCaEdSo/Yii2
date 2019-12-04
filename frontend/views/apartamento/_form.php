@@ -2,6 +2,8 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use frontend\models\Utilizador;
+use yii\helpers\ArrayHelper;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Apartamento */
@@ -15,31 +17,31 @@ use yii\widgets\ActiveForm;
         <div class="row">
 
             <div class="col-sm-9">
-            <?= $form->field($model, 'Titulo')->textInput(['maxlength' => true]) ?>
+                <?= $form->field($model, 'Titulo')->textInput(['maxlength' => true]) ?>
             </div>
 
             <div class="col-sm-3">
-            <?= $form->field($model, 'Preco')->textInput(['maxlength' => true]) ?>
+                <?= $form->field($model, 'Preco')->textInput(['maxlength' => true]) ?>
             </div>
 
             <div class="col-sm-4">
-            <?= $form->field($model, 'Distrito')->textInput(['maxlength' => true]) ?>
+                <?= $form->field($model, 'Distrito')->textInput(['maxlength' => true]) ?>
             </div>
 
             <div class="col-sm-4">
-            <?= $form->field($model, 'Concelho')->textInput(['maxlength' => true]) ?>
+                <?= $form->field($model, 'Concelho')->textInput(['maxlength' => true]) ?>
             </div>
 
             <div class="col-sm-4">
-            <?= $form->field($model, 'Freguesia')->textInput(['maxlength' => true]) ?>
+                <?= $form->field($model, 'Freguesia')->textInput(['maxlength' => true]) ?>
             </div>
 
             <div class="col-sm-9">
-            <?= $form->field($model, 'Morada')->textInput(['maxlength' => true]) ?>
+                <?= $form->field($model, 'Morada')->textInput(['maxlength' => true]) ?>
             </div>
 
             <div class="col-sm-3">
-            <?= $form->field($model, 'CodPostal')->textInput(['maxlength' => true]) ?>
+                <?= $form->field($model, 'CodPostal')->textInput(['maxlength' => true]) ?>
             </div>
         </div>
 
@@ -144,63 +146,67 @@ use yii\widgets\ActiveForm;
             </div>
 
             <div class="col-sm-6">
-            <?= $form->field($model, 'DataAnuncio')->textInput(['value'=> $data, 'disabled' => true]) ?>
+                <label class="control-label">Data Anuncio</label>
+                <?php if($model->DataAnuncio!=null){ echo Html::tag('p', Html::encode($model->DataAnuncio), ['class' => 'form-control']);
+                    }
+                    else{ echo Html::tag('p', Html::encode(date('d/m/y', time())), ['class' => 'form-control']);
+                    } ?>
             </div>
         </div>
         
         <div class="row">
             <div class="col-sm-2">
-            <?= $form->field($model, 'Fumador')->dropDownList([ 'Sim' => 'Sim', 'Não' => 'Não', ], ['prompt' => '']) ?>
+                <?= $form->field($model, 'Fumador')->dropDownList([ 'Sim' => 'Sim', 'Não' => 'Não', ], ['prompt' => '']) ?>
             </div>
 
             <div class="col-sm-2">
-            <?= $form->field($model, 'Mobilado')->dropDownList([ 'Sim' => 'Sim', 'Não' => 'Não', ], ['prompt' => '']) ?>
+                <?= $form->field($model, 'Mobilado')->dropDownList([ 'Sim' => 'Sim', 'Não' => 'Não', ], ['prompt' => '']) ?>
             </div>
 
             <div class="col-sm-2">
-            <?= $form->field($model, 'Internet')->dropDownList([ 'Sim' => 'Sim', 'Não' => 'Não', ], ['prompt' => '']) ?>
+                <?= $form->field($model, 'Internet')->dropDownList([ 'Sim' => 'Sim', 'Não' => 'Não', ], ['prompt' => '']) ?>
             </div>
 
             <div class="col-sm-2">
-            <?= $form->field($model, 'NumQuartos')->textInput() ?>
+                <?= $form->field($model, 'NumQuartos')->textInput() ?>
             </div>
 
             <div class="col-sm-2">
-            <?= $form->field($model, 'TipoApart')->dropDownList([ 'T0' => 'T0', 'T1' => 'T1', 'T2' => 'T2', 'T3' => 'T3', 'T4' => 'T4', ], ['prompt' => '']) ?>
+                <?= $form->field($model, 'TipoApart')->dropDownList([ 'T0' => 'T0', 'T1' => 'T1', 'T2' => 'T2', 'T3' => 'T3', 'T4' => 'T4', ], ['prompt' => '']) ?>
             </div>
 
             <div class="col-sm-2">
-            <?= $form->field($model, 'Cozinha')->dropDownList([ 'Sim' => 'Sim', 'Não' => 'Não', ], ['prompt' => '']) ?>
+                <?= $form->field($model, 'Cozinha')->dropDownList([ 'Sim' => 'Sim', 'Não' => 'Não', ], ['prompt' => '']) ?>
             </div>
 
             <div class="col-sm-2">
-            <?= $form->field($model, 'Parking')->dropDownList([ 'Sim' => 'Sim', 'Não' => 'Não', ], ['prompt' => '']) ?>
+                <?= $form->field($model, 'Parking')->dropDownList([ 'Sim' => 'Sim', 'Não' => 'Não', ], ['prompt' => '']) ?>
             </div>
 
             <div class="col-sm-2">
-            <?= $form->field($model, 'Animais')->dropDownList([ 'Sim' => 'Sim', 'Não' => 'Não', ], ['prompt' => '']) ?>
+                <?= $form->field($model, 'Animais')->dropDownList([ 'Sim' => 'Sim', 'Não' => 'Não', ], ['prompt' => '']) ?>
             </div>
 
             <div class="col-sm-2">
-            <?= $form->field($model, 'Casais')->dropDownList([ 'Sim' => 'Sim', 'Não' => 'Não', ], ['prompt' => '']) ?>
+                <?= $form->field($model, 'Casais')->dropDownList([ 'Sim' => 'Sim', 'Não' => 'Não', ], ['prompt' => '']) ?>
             </div>
 
             <div class="col-sm-2">
-            <?= $form->field($model, 'Genero')->dropDownList([ 'F' => 'F', 'M' => 'M', 'A' => 'A', ], ['prompt' => '']) ?>
+                <?= $form->field($model, 'Genero')->dropDownList([ 'F' => 'F', 'M' => 'M', 'A' => 'A', ], ['prompt' => '']) ?>
             </div>
 
             <div class="col-sm-2">
-            <?= $form->field($model, 'NumWC')->textInput() ?>
+                <?= $form->field($model, 'NumWC')->textInput() ?>
             </div>
         </div>
         
         <div class="row">
             <div class="col-sm-10">
-            <?= $form->field($model, 'IdUtilizador')->textInput() ?>
+                <?= $form->field($model, 'IdUtilizador')->dropDownList(ArrayHelper::map(Utilizador::find()->all(),'IdUtilizador', 'Email'), ['prompt'=>''])->label('Email do Utilizador') ?>
             </div>
 
             <div class="col-sm-2">
-            <?= $form->field($model, 'Aprovado')->dropDownList([ 'Sim' => 'Sim', 'Não' => 'Não', ], ['prompt' => '']) ?>
+                <?= $form->field($model, 'Aprovado')->dropDownList([ 'Sim' => 'Sim', 'Não' => 'Não', ], ['prompt' => '']) ?>
             </div>
 
         </div>
