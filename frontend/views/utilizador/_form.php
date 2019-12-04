@@ -77,7 +77,7 @@ use yii\helpers\ArrayHelper;
 
             <div class="col-sm-4">
                 <label class="control-label">Data Registo</label>
-                <?php if($model->DataRegis!=null){ echo Html::tag('p', Html::encode(date($model->DataRegis), ['class' => 'form-control']);
+                <?php if($model->DataRegis!=null){ echo Html::tag('p', Html::encode($model->DataRegis), ['class' => 'form-control']);
                     }
                     else{ echo Html::tag('p', Html::encode(date('d/m/y', time())), ['class' => 'form-control']);
                     } ?>
